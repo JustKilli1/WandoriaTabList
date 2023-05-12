@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
+import java.util.List;
 
 public class ConfigManager {
 
@@ -39,6 +40,16 @@ public class ConfigManager {
             return false;
         }
     }
+
+    public void addDefault(List<ConfigValue> defaultValues) {
+        defaultValues.forEach(value -> config.addDefault(value.getPath(), value.getRawValue()));
+        save();
+    }
+
+    public void addDefault(ConfigValue defaultValue) {
+        addDefault(List.of(defaultValue));
+    }
+
     public void reload() {
         config = YamlConfiguration.loadConfiguration(file);
     }
