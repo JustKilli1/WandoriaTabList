@@ -16,6 +16,10 @@ public class BaseLogger implements ILogger {
         this.outputPrinter = outputPrinter;
     }
 
+    public BaseLogger(String loggerName, IOutputPrinter outputPrinter) {
+        this(loggerName, List.of(outputPrinter));
+    }
+
     @Override
     public void log(LogLevel logLevel, List<String> message, Exception ex) {
         notifyPrinter(logLevel, message, ex);
