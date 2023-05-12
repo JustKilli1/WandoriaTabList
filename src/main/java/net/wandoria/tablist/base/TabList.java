@@ -1,4 +1,4 @@
-package net.wandoria.tablist;
+package net.wandoria.tablist.base;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

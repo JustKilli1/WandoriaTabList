@@ -1,6 +1,6 @@
 name: TabList
 version: '${project.version}'
-main: net.wandoria.tablist.TabList
+main: net.wandoria.tablist.base.TabList
 api-version: 1.19
 authors: [JustKilli]
 description: Wandoria TabList Plugin
