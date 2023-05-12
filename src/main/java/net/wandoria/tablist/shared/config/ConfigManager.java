@@ -9,6 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class ConfigManager {
@@ -22,9 +23,10 @@ public class ConfigManager {
     }
 
     public ConfigManager(String path) {
-        file = new File(path);
         logger = new BaseLogger("Config", new ConsolePrinter());
+        file = new File(path);
         config = YamlConfiguration.loadConfiguration(file);
+        config.options().copyDefaults(true);
     }
 
     /**

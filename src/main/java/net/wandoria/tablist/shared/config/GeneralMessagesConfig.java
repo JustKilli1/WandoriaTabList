@@ -1,6 +1,7 @@
 package net.wandoria.tablist.shared.config;
 
 import net.wandoria.tablist.shared.logging.LogLevel;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.Field;
 
@@ -8,10 +9,9 @@ public class GeneralMessagesConfig extends ConfigManager{
 
     public static final ConfigValue COMMAND_NOT_FOUND = new ConfigValue("general.command_not_found", "Invalid Command Syntax use " + ConfigParams.COMMAND, ConfigParams.COMMAND);
     public static final ConfigValue ONLY_PLAYER_CAN_EXECUTE = new ConfigValue("general.only_player_can_execute", "Only Player can execute this command");
-    private static final GeneralMessagesConfig instance = new GeneralMessagesConfig();
 
-    private GeneralMessagesConfig() {
-        super("general_messages");
+    public GeneralMessagesConfig(JavaPlugin plugin) {
+        super(plugin, "general_messages.yml");
         createDefaultConfig();
     }
 
@@ -27,6 +27,4 @@ public class GeneralMessagesConfig extends ConfigManager{
             }
         }
     }
-
-    public static GeneralMessagesConfig getInstance() { return instance; }
 }
