@@ -15,7 +15,7 @@ public class ConfigManager {
 
     private File file;
     private FileConfiguration config;
-    private ILogger logger;
+    protected ILogger logger;
 
     public ConfigManager(Plugin plugin, String path) {
         this(plugin.getDataFolder().getAbsolutePath() + "/" + path);
