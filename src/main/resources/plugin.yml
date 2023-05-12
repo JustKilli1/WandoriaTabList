@@ -4,3 +4,7 @@ main: net.wandoria.tablist.base.TabList
 api-version: 1.19
 authors: [JustKilli]
 description: Wandoria TabList Plugin
+
+commands:
+  test:
+    description: A Test Command to test things
