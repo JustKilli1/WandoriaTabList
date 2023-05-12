@@ -39,9 +39,7 @@ public class ConsolePrinter implements IOutputPrinter{
     public String format(LogLevel logLevel, String loggerName, List<String> message, Exception ex) {
         String messageMSG = message == null && message.size() == 0 ? "" : LoggingUtils.getMessageStr(message, false);
         String exceptionStr = ex == null ? "" : LoggingUtils.getStackTraceAsStr(ex);
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        return "[" + loggerName + "][" + logLevel.getName() + "][" + currentDateTime.format(formatter) + "]" +
+        return "[" + loggerName + "][" + logLevel.getName() + "]" +
                 messageMSG + "\n" + exceptionStr;
     }
 
