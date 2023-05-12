@@ -6,7 +6,7 @@
 
     <groupId>net.wandoria</groupId>
     <artifactId>TabList</artifactId>
-    <version>0.1.6-DEV</version>
+    <version>0.1.7-DEV</version>
     <packaging>jar</packaging>
 
     <name>TabList</name>

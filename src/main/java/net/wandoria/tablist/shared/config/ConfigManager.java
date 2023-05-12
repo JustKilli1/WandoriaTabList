@@ -52,6 +52,16 @@ public class ConfigManager {
         addDefault(List.of(defaultValue));
     }
 
+    public String getValue(String path) {
+        return (String) config.get(path);
+    }
+
+    public ConfigValue getValue(ConfigValue value) {
+        ConfigValue clone = value.clone();
+        clone.setRawValue(getValue(value.getPath()));
+        return clone;
+    }
+
     public void reload() {
         config = YamlConfiguration.loadConfiguration(file);
     }
