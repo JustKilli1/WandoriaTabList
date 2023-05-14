@@ -10,6 +10,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigManager {
@@ -43,6 +44,10 @@ public class ConfigManager {
         }
     }
 
+    public void addDefault(String path, List<String> values) {
+        config.addDefault(path, values);
+    }
+
     public void addDefault(List<ConfigValue> defaultValues) {
         defaultValues.forEach(value -> config.addDefault(value.getPath(), value.getRawValue()));
         save();
@@ -54,6 +59,9 @@ public class ConfigManager {
 
     public String getValue(String path) {
         return (String) config.get(path);
+    }
+    public List<String> getValues(String path) {
+        return config.getStringList(path);
     }
 
     public ConfigValue getValue(ConfigValue value) {
