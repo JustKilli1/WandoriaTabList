@@ -1,6 +1,7 @@
 package net.wandoria.tablist.listener;
 
 import net.wandoria.tablist.shared.config.ConfigManager;
+import net.wandoria.tablist.shared.config.TabListConfig;
 import net.wandoria.tablist.tablist.WandoriaTabList;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,9 +12,9 @@ import java.util.List;
 
 public class PlayerJoinListener implements Listener {
 
-    private ConfigManager config;
+    private TabListConfig config;
 
-    public PlayerJoinListener(ConfigManager config) {
+    public PlayerJoinListener(TabListConfig config) {
         this.config = config;
     }
 
@@ -23,6 +24,7 @@ public class PlayerJoinListener implements Listener {
         WandoriaTabList tabList = new WandoriaTabList(config);
         tabList.buildHeader(player);
         tabList.buildFooter(player);
+        tabList.addPlayerToTeam(player);
     }
 
 }
