@@ -33,9 +33,9 @@ public class WandoriaTabList {
      * @return The Header as String
      * */
     public String buildHeader(Player player) {
-        List<String> header = config.getValues("header");
-        player.setPlayerListHeader(build(header));
-        return "";
+        String header = build(config.getValues("header"));
+        player.setPlayerListHeader(header);
+        return header;
     }
 
     /**
@@ -44,9 +44,9 @@ public class WandoriaTabList {
      * @return The Footer as String
      * */
     public String buildFooter(Player player) {
-        List<String> footer = config.getValues("footer");
-        player.setPlayerListFooter(build(footer));
-        return "";
+        String footer = build(config.getValues("footer"));
+        player.setPlayerListFooter(footer);
+        return footer;
     }
 
     /**
