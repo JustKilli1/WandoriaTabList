@@ -20,6 +20,9 @@ public class TabListConfig extends ConfigManager{
         createDefaultConfig();
     }
 
+    /**
+     * Create the Default Configuration
+     * */
     private void createDefaultConfig() {
         List<String> header = List.of("line1", "line2");
         List<String> footer = List.of("line1", "line2");
@@ -37,6 +40,10 @@ public class TabListConfig extends ConfigManager{
         }
     }
 
+    /**
+     * Loads all Groups from the Config File.
+     * @return All Groups from the Config File as a List of {@link ViewableGroup}
+     * */
     public List<ViewableGroup> getGroups() {
         List<ViewableGroup> result = new ArrayList<>();
         Set<Group> permGroups = luckPerms.getGroupManager().getLoadedGroups();

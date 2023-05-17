@@ -15,6 +15,9 @@ public class GeneralMessagesConfig extends ConfigManager{
         createDefaultConfig();
     }
 
+    /**
+     * Create the Default Configuration
+     * */
     private void createDefaultConfig() {
         for(Field declaredField : this.getClass().getDeclaredFields()) {
             try {

@@ -14,7 +14,6 @@ import org.bukkit.scoreboard.Team;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public class WandoriaTabList {
 
@@ -28,18 +27,32 @@ public class WandoriaTabList {
         addAllTeams();
     }
 
+    /**
+     * Builds the Header of the TabList
+     * @param player The Player where the Header gets added
+     * @return The Header as String
+     * */
     public String buildHeader(Player player) {
         List<String> header = config.getValues("header");
         player.setPlayerListHeader(build(header));
         return "";
     }
 
+    /**
+     * Builds the Footer of the TabList
+     * @param player The Player where the Footer gets added
+     * @return The Footer as String
+     * */
     public String buildFooter(Player player) {
         List<String> footer = config.getValues("footer");
         player.setPlayerListFooter(build(footer));
         return "";
     }
 
+    /**
+     * Loads all available Groups from the Config and adds them as Teams to the Scoreboard
+     * @return All Teams that got added to the Scoreboard
+     * */
     private List<Team> addAllTeams() {
         List<Team> teams = new ArrayList<>();
         List<ViewableGroup> groups = config.getGroups();
@@ -55,6 +68,11 @@ public class WandoriaTabList {
         return teams;
     }
 
+    /**
+     * Adds a new Team to the Scoreboard
+     * @param group The {@link ViewableGroup} that gets added as a new Team.
+     * @return The Team that got added
+     * */
     private Team addNewTeam(ViewableGroup group) {
         Team team = scoreboard.getTeam(group.order() + group.name());
         if(team == null) team = scoreboard.registerNewTeam(group.order() + group.name());
@@ -63,6 +81,11 @@ public class WandoriaTabList {
         return team;
     }
 
+    /**
+     * Adds a new Player to a Scoreboard Team.
+     * @param player The player which gets added to a Team
+     * @return An Optional with the Team the Player got added to. An Empty Optional if the Player got added to no Team
+     * */
     public Optional<Team> addPlayerToTeam(Player player) {
         Optional<ViewableGroup> groupOpt = getHighestGroup(getPlayerGroups(player));
         if(groupOpt.isEmpty()) return Optional.empty();
@@ -78,12 +101,20 @@ public class WandoriaTabList {
         return Optional.ofNullable(team);
     }
 
+    /**
+     * Updates the Scoreboard of all Online Players
+     * */
     private void updatePlayerScoreboards() {
         for(Player target : Bukkit.getOnlinePlayers()) {
             target.setScoreboard(scoreboard);
         }
     }
 
+    /**
+     * Gets all Permission Groups that a specified Player has and Converts them into a List of {@link ViewableGroup}.
+     * @param player The player from which all Groups get selected
+     * @return A List with all Groups of the given Player as {@link ViewableGroup}
+     * */
     private List<ViewableGroup> getPlayerGroups(Player player) {
         List<ViewableGroup> groups = config.getGroups();
         List<ViewableGroup> playerGroups = new ArrayList<>();
@@ -93,6 +124,11 @@ public class WandoriaTabList {
         return playerGroups;
     }
 
+    /**
+     * Gets the highest Group from a List of {@link ViewableGroup}.
+     * @param groups The List from which the highest group gets selected
+     * @return An Optional which contains the Highest Group or an Empty Optional if no Group was present in the given List
+     * */
     private Optional<ViewableGroup> getHighestGroup(List<ViewableGroup> groups) {
         ViewableGroup highestGroup = null;
         for(ViewableGroup group : groups) {
@@ -106,12 +142,17 @@ public class WandoriaTabList {
         return Optional.ofNullable(highestGroup);
     }
 
-    private String build(List<String> str) {
+    /**
+     * Builds the Footer or Header of the Tablist
+     * @param content Content of the Header/Footer
+     * @return The Footer/Header as String
+     * */
+    private String build(List<String> content) {
         StringBuilder result = new StringBuilder();
-        for(int i = 0; i < str.size(); i++) {
-            String current = ChatColor.translateAlternateColorCodes('&', str.get(i));
+        for(int i = 0; i < content.size(); i++) {
+            String current = ChatColor.translateAlternateColorCodes('&', content.get(i));
             result.append(current);
-            if(i + 1 < str.size()) result.append("\n");
+            if(i + 1 < content.size()) result.append("\n");
         }
         return result.toString();
     }
