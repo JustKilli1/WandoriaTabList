@@ -57,12 +57,7 @@ public class WandoriaTabList {
         List<Team> teams = new ArrayList<>();
         List<ViewableGroup> groups = config.getGroups();
         for(ViewableGroup group : groups) {
-            System.out.println("Name: " + group.name());
-            System.out.println("ShowInTab: " + group.showInTab());
-            System.out.println("Prefix: " + group.prefix());
-            System.out.println("Suffix: " + group.suffix());
             if(!group.showInTab()) continue;
-            System.out.println("Name: " + group.name());
             teams.add(addNewTeam(group));
         }
         return teams;
